@@ -1,5 +1,6 @@
 import isEqual from 'lodash/isEqual';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 // @mui
 import { alpha } from '@mui/material/styles';
 import Tab from '@mui/material/Tab';
@@ -38,30 +39,54 @@ import BalanceTableFiltersResult from './balance-table-filters-result';
 
 // ----------------------------------------------------------------------
 
-const STATUS_OPTIONS = [
-  { value: 'all', label: 'All' },
-  { value: 'pending', label: 'Pending' },
-  { value: 'approved', label: 'Approved' },
-];
+// const STATUS_OPTIONS = [
+//   { value: 'all', label: 'All' },
+//   { value: 'pending', label: 'Pending' },
+//   { value: 'approved', label: 'Approved' },
+// ];
 
-const TABLE_HEAD = [
-  { id: 'id', label: 'User Id', width: 100 },
-  { id: 'name', label: 'Name' },
-  { id: 'amount', label: 'Amount', width: 200 },
-  { id: 'createdAt', label: 'Date', width: 200 },
-  { id: 'status', label: 'Status', width: 100 },
-  { id: '', width: 88 },
-];
+// const TABLE_HEAD = [
+//   { id: 'id', label: 'User Id', width: 100 },
+//   { id: 'name', label: 'Name' },
+//   { id: 'amount', label: 'Amount', width: 200 },
+//   { id: 'createdAt', label: 'Date', width: 200 },
+//   { id: 'status', label: 'Status', width: 100 },
+//   { id: '', width: 88 },
+// ];
 
-const defaultFilters: IUserTableFilters = {
-  name: '',
-  role: [],
-  status: 'all',
-};
+// const defaultFilters: IUserTableFilters = {
+//   name: '',
+//   role: [],
+//   status: 'all',
+// };
 
 // ----------------------------------------------------------------------
 
 export default function BalanceView() {
+
+  const {t} = useTranslation();
+
+  const STATUS_OPTIONS = [
+    { value: 'all', label: t('label.all') },
+    { value: 'pending', label: t('label.pending') },
+    { value: 'approved', label: t('label.approved') },
+  ];
+  
+  const TABLE_HEAD = [
+    { id: 'id', label: t('label.user_id'), width: 100 },
+    { id: 'name', label: t('label.name') },
+    { id: 'amount', label: t('label.amount'), width: 200 },
+    { id: 'createdAt', label: t('label.date'), width: 200 },
+    { id: 'status', label: t('label.status'), width: 100 },
+    { id: '', width: 88 },
+  ];
+  
+  const defaultFilters = useMemo(() => ({
+    name: '',
+    role: [],
+    status: 'all',
+  }), []);
+  
   const table = useTable();
   const dispatch = useDispatch();
 
@@ -139,7 +164,7 @@ export default function BalanceView() {
 
   const handleResetFilters = useCallback(() => {
     setFilters(defaultFilters);
-  }, []);
+  }, [defaultFilters]);
 
   const getList = useCallback(async () => {
     const res = await getCharging();
@@ -147,7 +172,7 @@ export default function BalanceView() {
     setTableData(res.data);
     const _roles: IRole[] = [];
     res.data.forEach((row: any) => {
-      const flag = _roles.some((t) => t.id === row.user.role_id);
+      const flag = _roles.some((tt) => tt.id === row.user.role_id);
       const _role = roles.find((role) => role.id === row.user.role_id);
       if (!flag && _role) _roles.push(_role);
     });

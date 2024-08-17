@@ -1,5 +1,5 @@
 import isEqual from 'lodash/isEqual';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 // @mui
 import { alpha } from '@mui/material/styles';
@@ -43,35 +43,64 @@ import UserQuickEditForm from './user-quick-edit-form';
 
 // ----------------------------------------------------------------------
 
-const STATUS_OPTIONS = [
-  { value: 'all', label: 'All' },
-  { value: 'active', label: 'Active' },
-  { value: 'blocked', label: 'Blocked' },
-];
+// const STATUS_OPTIONS = [
+//   { value: 'all', label: t('lable.all') },
+//   { value: 'active', label: t('lable.active') },
+//   { value: 'blocked', label: t('lable.blocked') },
+// ];
 
-const TABLE_HEAD = [
-  { id: 'id', label: 'User Id', width: 90 },
-  { id: 'agent_code', label: 'Agent Code', width: 90 },
-  { id: 'name', label: 'Name', width: 200 },
-  { id: 'money', label: 'Money', width: 100 },
-  { id: 'role', label: 'Role', width: 100 },
-  { id: 'win_count', label: 'Win Count', width: 100 },
-  { id: 'lose_count', label: 'Lose Count', width: 100 },
-  { id: 'createdAt', label: 'Created Date', width: 100 },
-  { id: 'status', label: 'Status', width: 100 },
-  { id: '', width: 88 },
-];
+// const TABLE_HEAD = [
+//   { id: 'id', label: t('lable.user_id'), width: 90 },
+//   { id: 'agent_code', label: t('lable.agent_code'), width: 90 },
+//   { id: 'name', label: t('lable.name'), width: 200 },
+//   { id: 'money', label: t('lable.money'), width: 100 },
+//   { id: 'role', label: t('lable.role'), width: 100 },
+//   { id: 'win_count', label: t('lable.win_count'), width: 100 },
+//   { id: 'lose_count', label: t('lable.lose_count'), width: 100 },
+//   { id: 'createdAt', label: t('lable.created_date'), width: 100 },
+//   { id: 'status', label: t('lable.status'), width: 100 },
+//   { id: '', width: 88 },
+// ];
 
-const defaultFilters: IUserTableFilters = {
-  name: '',
-  role: [],
-  status: 'all',
-};
+// const defaultFilters: IUserTableFilters = {
+//   name: '',
+//   role: [],
+//   status: 'all',
+// };
 
 // ----------------------------------------------------------------------
 
 export default function UsersView() {
+  
   const {t} = useTranslation();
+
+  const STATUS_OPTIONS = [
+    { value: 'all', label: t('label.all') },
+    { value: 'active', label: t('label.active') },
+    { value: 'blocked', label: t('label.blocked') },
+  ];
+  
+  const TABLE_HEAD = [
+    { id: 'id', label: t('label.user_id'), width: 90 },
+    { id: 'agent_code', label: t('label.agent_code'), width: 90 },
+    { id: 'name', label: t('label.name'), width: 200 },
+    { id: 'money', label: t('label.money'), width: 100 },
+    { id: 'role', label: t('label.role'), width: 100 },
+    { id: 'win_count', label: t('label.win_count'), width: 100 },
+    { id: 'lose_count', label: t('label.lose_count'), width: 100 },
+    { id: 'createdAt', label: t('label.created_date'), width: 100 },
+    { id: 'status', label: t('label.status'), width: 100 },
+    { id: '', width: 88 },
+  ];
+  
+  
+  const defaultFilters = useMemo(() => ({
+    name: '',
+    role: [],
+    status: 'all',
+  }), []);
+
+
   const dispatch = useDispatch();
 
   const table = useTable();
@@ -148,7 +177,7 @@ export default function UsersView() {
 
   const handleResetFilters = useCallback(() => {
     setFilters(defaultFilters);
-  }, []);
+  }, [defaultFilters]);
 
   const getList = useCallback(async () => {
     const res = await getUsers();

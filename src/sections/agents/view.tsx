@@ -34,17 +34,26 @@ import RoleTableRow from './role-table-row';
 
 // ----------------------------------------------------------------------
 
-const TABLE_HEAD = [
-  { id: 'id', label: 'Role Id', width: 100 },
-  { id: 'label', label: 'Label' },
-  { id: 'fee', label: 'Fee', width: 220 },
-  { id: 'type', label: 'Type', width: 180 },
-  { id: '', width: 88 },
-];
+// const TABLE_HEAD = [
+//   { id: 'id', label: 'Role Id', width: 100 },
+//   { id: 'label', label: 'Label' },
+//   { id: 'fee', label: 'Fee', width: 220 },
+//   { id: 'type', label: 'Type', width: 180 },
+//   { id: '', width: 88 },
+// ];
 // ----------------------------------------------------------------------
 
 export default function UsersView() {
   const {t} = useTranslation();
+
+  const TABLE_HEAD = [
+    { id: 'id', label: t('label.role_id'), width: 100 },
+    { id: 'label', label: t('label.label') },
+    { id: 'fee', label: t('label.fee'), width: 220 },
+    { id: 'type', label: t('label.type'), width: 180 },
+    { id: '', width: 88 },
+  ];
+
   const dispatch = useDispatch();
   const { roles } = useSelector((state) => state.role);
 

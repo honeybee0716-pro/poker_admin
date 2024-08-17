@@ -1,4 +1,5 @@
 import { lazy, Suspense } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Outlet } from 'react-router-dom';
 // layouts
 import AuthClassicLayout from 'src/layouts/auth/classic';
@@ -12,6 +13,7 @@ const JwtLoginPage = lazy(() => import('src/pages/auth/login'));
 // const JwtRegisterPage = lazy(() => import('src/pages/auth/register'));
 
 export const authRoutes = [
+
   {
     path: 'auth',
     element: (
@@ -22,11 +24,7 @@ export const authRoutes = [
     children: [
       {
         path: 'login',
-        element: (
-          <AuthClassicLayout title="Wlcome to Admin Panel">
-            <JwtLoginPage />
-          </AuthClassicLayout>
-        ),
+        element: <LoginLayout />,
       },
       // {
       //   path: 'register',
@@ -39,3 +37,13 @@ export const authRoutes = [
     ],
   },
 ];
+
+function LoginLayout() {
+  const { t } = useTranslation();
+
+  return (
+    <AuthClassicLayout title={t('label.welcome')}>
+      <JwtLoginPage />
+    </AuthClassicLayout>
+  );
+}

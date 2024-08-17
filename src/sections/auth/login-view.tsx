@@ -37,8 +37,8 @@ export default function LoginView() {
   const password = useBoolean();
 
   const LoginSchema = Yup.object().shape({
-    email: Yup.string().required('Email is required').email('Email must be a valid email address'),
-    password: Yup.string().required('Password is required'),
+    email: Yup.string().required(t('label.email_is_required')).email(t('label.email_must_be')),
+    password: Yup.string().required(t('label.password_is_required')),
   });
 
   const defaultValues = {
@@ -80,11 +80,11 @@ export default function LoginView() {
     <Stack spacing={2.5}>
       {!!errorMsg && <Alert severity="error">{errorMsg}</Alert>}
 
-      <RHFTextField name="email" label="Email address" />
+      <RHFTextField name="email" label={t('label.email_address')} />
 
       <RHFTextField
         name="password"
-        label="Password"
+        label={t('label.password')}
         type={password.value ? 'text' : 'password'}
         InputProps={{
           endAdornment: (

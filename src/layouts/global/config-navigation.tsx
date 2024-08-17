@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 // routes
 import { paths } from 'src/routes/paths';
 // components
@@ -54,22 +55,23 @@ const ICONS = {
 // ----------------------------------------------------------------------
 
 export function useNavData() {
+  const {t} = useTranslation();
   const data = useMemo(
     () => [
       // OVERVIEW
       // ----------------------------------------------------------------------
       {
-        subheader: 'management',
+        subheader: t('label.management'),
         items: [
-          { title: 'Users', path: paths.users.root, icon: ICONS.user },
-          { title: 'Agents', path: paths.agents.root, icon: ICONS.agent },
+          { title: t('label.users'), path: paths.users.root, icon: ICONS.user },
+          { title: t('label.agents'), path: paths.agents.root, icon: ICONS.agent },
           {
-            title: 'Game record',
+            title: t('label.game_record'),
             path: paths.record.root,
             icon: ICONS.record,
           },
           {
-            title: 'Balance',
+            title: t('label.balance'),
             path: paths.balance.root,
             icon: ICONS.balance,
           },
@@ -94,7 +96,7 @@ export function useNavData() {
       //   ],
       // },
     ],
-    []
+    [t]
   );
 
   return data;

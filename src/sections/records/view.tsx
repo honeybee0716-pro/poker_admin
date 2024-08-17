@@ -1,5 +1,6 @@
 import isEqual from 'lodash/isEqual';
 import { useState, useCallback, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 // @mui
 import Card from '@mui/material/Card';
 import Table from '@mui/material/Table';
@@ -31,15 +32,6 @@ import RecordTableFiltersResult from './records-table-filters-result';
 
 // ----------------------------------------------------------------------
 
-const TABLE_HEAD = [
-  { id: 'id', label: 'User Id', width: 100 },
-  { id: 'name', label: 'Name' },
-  { id: 'current_money', label: 'Current Money', width: 200 },
-  { id: 'player_cards', label: 'Player Cards', width: 200 },
-  { id: 'action', label: 'Action', width: 200 },
-  { id: 'amount', label: 'Amount', width: 200 },
-  { id: 'createdAt', label: 'Date', width: 200 },
-];
 
 const defaultFilters: IRecordTableFilters = {
   name: '',
@@ -50,6 +42,20 @@ const defaultFilters: IRecordTableFilters = {
 // ----------------------------------------------------------------------
 
 export default function RecordsView() {
+
+  const {t} = useTranslation();
+
+  const TABLE_HEAD = [
+    { id: 'id', label: t('label.user_id'), width: 100 },
+    { id: 'name', label: t('label.name') },
+    { id: 'current_money', label: t('label.current_money'), width: 200 },
+    { id: 'player_cards', label: t('label.player_card'), width: 200 },
+    { id: 'action', label: t('label.action'), width: 200 },
+    { id: 'amount', label: t('label.amount'), width: 200 },
+    { id: 'createdAt', label: t('label.date'), width: 200 },
+  ];
+
+
   const table = useTable({ defaultRowsPerPage: 10 });
 
   const settings = useSettingsContext();
