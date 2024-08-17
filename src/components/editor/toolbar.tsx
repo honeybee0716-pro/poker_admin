@@ -1,5 +1,6 @@
-import { StyledEditorToolbar } from './styles';
 import { useTranslation } from 'react-i18next';
+import { StyledEditorToolbar } from './styles';
+
 // ----------------------------------------------------------------------
 
 const HEADINGS = ['Heading 1', 'Heading 2', 'Heading 3', 'Heading 4', 'Heading 5', 'Heading 6'];

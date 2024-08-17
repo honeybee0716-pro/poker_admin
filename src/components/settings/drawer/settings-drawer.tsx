@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
@@ -8,7 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Drawer, { drawerClasses } from '@mui/material/Drawer';
 
-import { useTranslation } from 'react-i18next';
+
 // theme
 import { paper } from 'src/theme/css';
 //

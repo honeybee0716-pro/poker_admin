@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { useTranslation } from 'react-i18next';
 // @mui
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
@@ -8,7 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import ListItemText from '@mui/material/ListItemText';
 // hooks
 import { useBoolean } from 'src/hooks/use-boolean';
-import { useTranslation } from 'react-i18next';
+
 // types
 import { IBalance } from 'src/types';
 // components

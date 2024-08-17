@@ -1,6 +1,7 @@
+import { useTranslation } from 'react-i18next';
 import Typography from '@mui/material/Typography';
 import Paper, { PaperProps } from '@mui/material/Paper';
-import { useTranslation } from 'react-i18next';
+
 // ----------------------------------------------------------------------
 
 interface Props extends PaperProps {

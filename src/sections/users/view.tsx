@@ -1,5 +1,6 @@
 import isEqual from 'lodash/isEqual';
 import { useState, useCallback, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 // @mui
 import { alpha } from '@mui/material/styles';
 import Tab from '@mui/material/Tab';
@@ -15,7 +16,7 @@ import { useDispatch } from 'src/store';
 import { setRoles } from 'src/store/reducers/role';
 // hooks
 import useApi from 'src/hooks/use-api';
-import { useTranslation } from 'react-i18next';
+
 import { useBoolean } from 'src/hooks/use-boolean';
 // components
 import Label from 'src/components/label';
