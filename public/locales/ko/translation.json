@@ -96,7 +96,8 @@
       "type": "유형",
       "current_money": "현재 돈",
       "player_card": "플레이어 카드",
-      "action": "액션"
+      "action": "액션",
+      "search": "검색..."
     }
   }
   

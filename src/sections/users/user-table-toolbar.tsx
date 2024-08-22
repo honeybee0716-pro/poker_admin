@@ -105,7 +105,7 @@ export default function UserTableToolbar({
             fullWidth
             value={filters.name}
             onChange={handleFilterName}
-            placeholder="Search..."
+            placeholder={t('label.search')}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">

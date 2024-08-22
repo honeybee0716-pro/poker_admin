@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 // @mui
 import Stack from '@mui/material/Stack';
 import MenuItem from '@mui/material/MenuItem';
@@ -23,6 +24,7 @@ type Props = {
 };
 
 export default function BalanceTableToolbar({ filters, onFilters }: Props) {
+  const {t} = useTranslation();
   const handleFilterName = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       onFilters('name', event.target.value);
@@ -57,7 +59,7 @@ export default function BalanceTableToolbar({ filters, onFilters }: Props) {
             value={filters.name}
             onChange={handleFilterName}
             label="Name"
-            placeholder="Search..."
+            placeholder={t('label.search')}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -71,7 +73,7 @@ export default function BalanceTableToolbar({ filters, onFilters }: Props) {
             value={filters.action}
             onChange={handleFilterAction}
             label="Action"
-            placeholder="Search..."
+            placeholder={t('label.search')}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">

@@ -96,7 +96,8 @@
     "type": "Type",
     "current_money": "Current Moeny",
     "player_card": "Player Card",
-    "action": "Action"
+    "action": "Action",
+    "search": "Search..."
 
   }
 }
